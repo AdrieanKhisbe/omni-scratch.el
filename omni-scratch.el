@@ -27,6 +27,23 @@
 ;;; Code:
 
 
+(defun os:create-scratch-buffer (name mode)
+  (interactive)
+  ;; §maybe: create or also switch to?
+  (let ((buffer (get-buffer-create name) ))
+    ;;§select buffeR?
+    (switch-to-buffer buffer)
+    (funcall mode)
+))
 
+;; §todo: switch to THE buffer associated with current programming mode.
+;; §maybe: integration with popwin
+(defun os:test ()
+  (interactive)
+  (os:create-scratch-buffer "*scratch:draft*" 'fundamental-mode))
+
+
+
+(os:test)
 (provide 'omni-scratch)
 ;;; omni-scratch.el ends here
