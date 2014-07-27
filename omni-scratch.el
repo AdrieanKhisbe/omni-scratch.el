@@ -24,25 +24,38 @@
 
 ;;
 
+;;; Building-Notes:
+;; §todo: switch to THE buffer associated with current programming mode.
+;; §maybe: integration with popwin
+
 ;;; Code:
 
+(defvar os:latest-scratch-buffer (get-buffer "*scratch*")
+  "The Latest scratch buffer used.")
 
 (defun os:create-scratch-buffer (name mode)
   (interactive)
+  ;; §later: option noselect?
   ;; §maybe: create or also switch to?
   (let ((buffer (get-buffer-create name) ))
-    ;;§select buffeR?
     (switch-to-buffer buffer)
+    (setq os:latest-scratch-buffer buffer)
     (funcall mode)
-))
+    ;; §later: apply eventual modificatino to local modes.
+    ;; [and var: maybe identify the scratch buffer]: local var and register in alist or so
+    ))
 
-;; §todo: switch to THE buffer associated with current programming mode.
-;; §maybe: integration with popwin
+;; §todo: os:get-major-mode-scratch-buffer
+
+(defun os:switch-to-latest-scratch-buffer ()
+  "Switch to the `os:latest-scratch-buffer' used."
+  (interactive)
+  ;; §note: improve using ring. (so that handle dead buffer)
+  (switch-to-buffer os:latest-scratch-buffer))
+
 (defun os:test ()
   (interactive)
   (os:create-scratch-buffer "*scratch:draft*" 'fundamental-mode))
-
-
 
 (os:test)
 (provide 'omni-scratch)
