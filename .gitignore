@@ -1,2 +1,5 @@
 .cask
 *.elc
+*~
+¬*
+# fichiers brouillons

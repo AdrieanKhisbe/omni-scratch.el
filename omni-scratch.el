@@ -26,7 +26,7 @@
 
 ;;; Building-Notes:
 ;; §todo: switch to THE buffer associated with current programming mode.
-;; §maybe: integration with popwin
+;; §maybe: integration with popwin.
 
 ;;; Code:
 
@@ -43,7 +43,7 @@
     (funcall mode)
     ;; §later: apply eventual modificatino to local modes.
     ;; [and var: maybe identify the scratch buffer]: local var and register in alist or so
-    ))
+    buffer))
 
 ;; §todo: os:get-major-mode-scratch-buffer
 
@@ -53,10 +53,18 @@
   ;; §note: improve using ring. (so that handle dead buffer)
   (switch-to-buffer os:latest-scratch-buffer))
 
-(defun os:test ()
-  (interactive)
-  (os:create-scratch-buffer "*scratch:draft*" 'fundamental-mode))
+;; (defun os:test ()
+;;   (interactive)
+;;   (os:create-scratch-buffer "*scratch:draft*" 'fundamental-mode))
 
-(os:test)
+;; §todo: default mode and minor
+;; §maybe: specific background
+(defun new-scratch-buffer ()
+  "Crate a new scratch buffer and switch too"
+  (interactive)
+   (switch-to-buffer
+    (os:create-scratch-buffer "*scratch:draft*" 'fundamental-mode)))
+;; ¤note: for now just one scratch buffer. later many different?
+
 (provide 'omni-scratch)
 ;;; omni-scratch.el ends here
