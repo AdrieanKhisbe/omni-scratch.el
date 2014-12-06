@@ -1,0 +1,37 @@
+*Omni-scratch.el*
+
+/More details to come/
+
+* Description
+
+The goal of this basic mode is to easily create scratch buffer to edit in the curreny major mode you are using.
+Some features like custom scratch buffer with specific minor-modes, copy on quit, etc, might be added over time.
+
+* Installation
+
+To install it, put the files in your load path, and require it.
+Otherwise, if you use [[https://github.com/jwiegley/use-package][use-package]] you could use the following config
+#+begin_src emacs-lisp
+  (use-package omni-scratch
+    :bind (("M-s DEL". new-scratch-buffer)
+           ("M-s <deletechar>". new-scratch-major-buffer)))
+#+end_src
+
+Wait it to mature a bit and maybe you might get =some el-get= recipe, before it hits elpa, melpa, quelpa or else.
+
+* Usage
+
+Fonctionalities are limited for now:
+- you can create a scratch buffer with the current mode you are using =new-scratch-major-buffer=
+- you can create a new scratch buffer with =new-scratch-buffer=
+
+* Notes
+
+This is still a prototype. So if ever you think about using it, prefer the =master= branch, and expect to update your config.
+Name of function and even behavior might change, so don't be suprised
+
+It's working, I use it on my =Emacs=, but it's far wrong being perfect and not yet stable.
+(Cask config to be improved, test to be done, etc)
+# §more
+
+*If you have any remark, refactor suggestion or else, just pose an issue ;)*
