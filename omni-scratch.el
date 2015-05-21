@@ -22,8 +22,7 @@
 
 ;;; Commentary:
 
-;; `os' is the namespace for internal function that are not part of the
-;; public api of the mode.
+;; §TODO
 ;;
 
 ;;; Building-Notes:
@@ -32,30 +31,30 @@
 
 ;;; Code:
 
-(defvar os:latest-scratch-buffer (get-buffer "*scratch*")
+(defvar omni-scratch-latest-scratch-buffer (get-buffer "*scratch*")
   "The Latest scratch buffer used.")
 
-(defun os:create-scratch-buffer (name mode) ;§tor? create or switch?
+(defun omni-scratch-create-scratch-buffer (name mode) ;§tor? create or switch?
   (interactive)
   ;; §later: option noselect?
   ;; §maybe: create or also switch to?
   (let ((buffer (get-buffer-create name) ))
     (switch-to-buffer buffer)
-    (setq os:latest-scratch-buffer buffer)
+    (setq omni-scratch-latest-scratch-buffer buffer)
     (funcall mode)
     ;; §later: apply eventual modificatino to local modes.
     ;; [and var: maybe identify the scratch buffer]: local var and register in alist or so
     buffer))
 
-(defun os:switch-to-latest-scratch-buffer ()
-  "Switch to the `os:latest-scratch-buffer' used."
+(defun omni-scratch-switch-to-latest-scratch-buffer ()
+  "Switch to the `omni-scratch-latest-scratch-buffer' used."
   (interactive)
   ;; §note: improve using ring. (so that handle dead buffer)
-  (switch-to-buffer os:latest-scratch-buffer))
+  (switch-to-buffer omni-scratch-latest-scratch-buffer))
 
-;; (defun os:test ()
+;; (defun omni-scratch-test ()
 ;;   (interactive)
-;;   (os:create-scratch-buffer "*scratch:draft*" 'fundamental-mode))
+;;   (omni-scratch-create-scratch-buffer "*scratch:draft*" 'fundamental-mode))
 
 ;; §todo: default mode and minor
 ;; §maybe: specific background
@@ -63,20 +62,19 @@
   "Crate a new scratch buffer and switch too"
   (interactive)
    (switch-to-buffer
-    (os:create-scratch-buffer "*scratch:draft*" 'fundamental-mode)))
+    (omni-scratch-create-scratch-buffer "*scratch:draft*" 'fundamental-mode)))
 ;; ¤note: for now just one scratch buffer. later many different?
 
 (defun new-scratch-major-buffer () ;§tmaybe:torename
   "Crate a new scratch buffer and switch too"
   (interactive)
    (switch-to-buffer
-    (os:create-scratch-buffer
+    (omni-scratch-create-scratch-buffer
      (replace-regexp-in-string "\\(.*\\)-mode" "*scratch:\\1*"
 			       (symbol-name major-mode)) major-mode)))
 
 ;; §later: scratch minor modefor this buffer: quick exist, copy content. save to file.
 ;; §later: filter mode where not applyable: ibuffer and others..
-
 
 (provide 'omni-scratch)
 ;;; omni-scratch.el ends here
