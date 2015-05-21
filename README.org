@@ -3,6 +3,11 @@
 
 /Very Very Instable, Api to be totally changed/
 
+[[https://travis-ci.org/AdrieanKhisbe/omni-scratch.el][file:https://travis-ci.org/AdrieanKhisbe/omni-scratch.el.svg]]
+[[http://melpa.org/#/omni-scratch][file:http://melpa.org/packages/omni-scratch-badge.svg]]
+[[http://stable.melpa.org/#/omni-scratch][file:http://stable.melpa.org/packages/omni-scratch-badge.svg]]
+[[http://www.gnu.org/licenses/gpl-3.0.html][http://img.shields.io/:license-gpl3-blue.svg]]
+
 /More details to come/
 
 ** Description
