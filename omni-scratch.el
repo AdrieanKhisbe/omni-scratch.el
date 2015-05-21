@@ -62,15 +62,16 @@
 
 ;; §todo: default mode and minor
 ;; §maybe: specific background
-(defun new-scratch-buffer () ;§maybe : rename to `goto' (since unicity of these buffers)
+;;;###autoload
+(defun omni-scratch-new-scratch-buffer () ;§maybe : rename to `goto' (since unicity of these buffers)
   "Create a new scratch buffer and switch to."
   (interactive)
   (switch-to-buffer
    (omni-scratch-create-scratch-buffer "*scratch:draft*" 'fundamental-mode)))
 ;; ¤note: for now just one scratch buffer.
 ;; §todo: later many different?
-
-(defun new-scratch-major-buffer () ;§tmaybe:torename
+;;;###autoload
+(defun omni-scratch-new-scratch-major-buffer () ;§tmaybe:torename
   "Create a new scratch buffer and switch to with current major mode."
   (interactive)
   (switch-to-buffer

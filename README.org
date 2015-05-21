@@ -21,8 +21,8 @@ To install it, put the files in your load path, and require it.
 Otherwise, if you use [[https://github.com/jwiegley/use-package][use-package]] you could use the following config
 #+begin_src emacs-lisp
   (use-package omni-scratch
-    :bind (("M-s DEL". new-scratch-buffer)
-           ("M-s <deletechar>". new-scratch-major-buffer)))
+    :bind (("M-s DEL" . omni-scratch-new-scratch-buffer)
+           ("M-s <deletechar>" . omni-scratch-new-scratch-major-buffer)))
 #+end_src
 
 Wait it to mature a bit and maybe you might get =some el-get= recipe, before it hits elpa, melpa, quelpa or else.
