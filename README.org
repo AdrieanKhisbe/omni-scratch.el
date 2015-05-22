@@ -30,16 +30,12 @@ Wait it to mature a bit and maybe you might get =some el-get= recipe, before it 
 ** Usage
 
 Fonctionalities are limited for now:
-- you can create a scratch buffer with the current mode you are using =new-scratch-major-buffer=
-- you can create a new scratch buffer with =new-scratch-buffer=
+- you can create a scratch buffer with the current mode you are using =omni-scratch-new-scratch-major-buffer=
+- you can create a new scratch buffer with =omni-scratch-new-scratch-buffer=. (Default to =fundamental-mode=)
 
 ** Notes
 
-This is still a prototype. So if ever you think about using it, prefer the =master= branch, and expect to update your config.
-Name of function and even behavior might change, so don't be suprised
-
-It's working, I use it on my =Emacs=, but it's far wrong being perfect and not yet stable.
-(Cask config to be improved, test to be done, etc)
-# §more
+This is still a *prototype*. So if ever you think about using it, prefer the =master= branch, and expect to update your config.
+Name of function and even behavior +might+ will change, so don't be suprised
 
 *If you have any remark, refactor suggestion or else, just pose an issue ;)*
