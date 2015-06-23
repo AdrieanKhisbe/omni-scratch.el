@@ -6,6 +6,7 @@
 ;; Created:  2014-07-27
 ;; Version: 0.1.1
 ;; Keywords: convenience, languages, tools
+;; Url: https://github.com/AdrieanKhisbe/omni-scratch.el
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
