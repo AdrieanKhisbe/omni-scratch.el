@@ -11,6 +11,10 @@
 
 (add-to-list 'load-path omni-scratch-root-path)
 
+(require 'undercover)
+(undercover "*.el" "omni-scratch/*.el"
+            (:exclude "*-test.el")
+            (:report-file "/tmp/undercover-report.json"))
 (require 'omni-scratch)
 (require 'espuds)
 (require 'ert)

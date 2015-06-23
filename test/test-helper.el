@@ -31,8 +31,13 @@
      ,@body
      (f-delete default-directory :force)))
 
+(require 'undercover)
+(undercover "*.el" "omni-scratch/*.el"
+            (:exclude "*-test.el")
+            (:send-report nil)
+            (:report-file "/tmp/undercover-report.json"))
 (require 'ert)
-(require 'omni-scratch (f-expand "omni-scratch" omni-scratch-root-path))
+(require 'omni-scratch )
 
 (provide 'test-helper)
 ;;; test-helper.el ends here
