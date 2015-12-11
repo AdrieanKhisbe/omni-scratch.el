@@ -47,7 +47,7 @@
     (switch-to-buffer buffer)
     (setq omni-scratch-latest-scratch-buffer buffer)
     (funcall mode)
-    ;; §later: apply eventual modificatino to local modes.
+    ;; §later: apply eventual modification to local modes.
     ;; [and var: maybe identify the scratch buffer]: local var and register in alist or so
     buffer))
 
