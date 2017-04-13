@@ -39,7 +39,6 @@
 
 (defun omni-scratch-create-scratch-buffer (name mode)
   "Create or switch to NAME buffer in specified MODE."
-  (interactive)
   ;; §later: option noselect?
   ;; §maybe: create or also switch to?
   ;; §TODO: rename?, kill interactive?
@@ -51,7 +50,7 @@
     ;; [and var: maybe identify the scratch buffer]: local var and register in alist or so
     buffer))
 
-(defun omni-scratch-goto-latest-scratch-buffer ()
+(defun omni-scratch-goto-latest ()
   "Switch to the `omni-scratch-latest-scratch-buffer' used."
   (interactive)
   ;; §note: improve using ring. (so that handle dead buffer)
@@ -63,8 +62,9 @@
 
 ;; §todo: default mode and minor
 ;; §maybe: specific background
+
 ;;;###autoload
-(defun omni-scratch-new-scratch-buffer () ;§maybe : rename to `goto' (since unicity of these buffers)
+(defun omni-scratch-buffer ()
   "Create a new scratch buffer and switch to."
   (interactive)
   (switch-to-buffer
@@ -72,7 +72,7 @@
 ;; ¤note: for now just one scratch buffer.
 ;; §todo: later many different?
 ;;;###autoload
-(defun omni-scratch-new-scratch-major-buffer () ;§tmaybe:torename
+(defun omni-scratch-major-buffer ()
   "Create a new scratch buffer and switch to with current major mode."
   (interactive)
   (switch-to-buffer

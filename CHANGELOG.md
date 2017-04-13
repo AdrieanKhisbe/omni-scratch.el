@@ -6,10 +6,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased][unreleased]
 ### Added
 - Add a omni-scratch-quit function
+### Changed
+- rename functions to shorter name
 ## [0.1.1] - 2015-05-21
 ### Changed
 - Add package prefix to functions
-
 ## [0.1.0] - 2014-12-06
 - Initial Release
 
