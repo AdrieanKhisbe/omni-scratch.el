@@ -1,6 +1,8 @@
 * Omni-scratch.el
 
-/Very Very Instable, Api to be totally changed/
+/Scratch buffers one command away/
+
+/Still Instable, Api to be probably changed/
 
 [[https://travis-ci.org/AdrieanKhisbe/omni-scratch.el][file:https://travis-ci.org/AdrieanKhisbe/omni-scratch.el.svg]]
 [[https://coveralls.io/r/AdrieanKhisbe/omni-scratch.el][file:https://coveralls.io/repos/AdrieanKhisbe/omni-scratch.el/badge.svg]]
@@ -9,30 +11,29 @@
 [[https://github.com/AdrieanKhisbe/omni-scratch.el/tags][file:https://img.shields.io/github/tag/AdrieanKhisbe/omni-scratch.el.svg]]
 [[http://www.gnu.org/licenses/gpl-3.0.html][http://img.shields.io/:license-gpl3-blue.svg]]
 
-/More details to come/
-
 ** Description
 
 The goal of this basic mode is to easily create scratch buffer to edit in the curreny major mode you are using.
-Some features like custom scratch buffer with specific minor-modes, copy on quit, etc, might be added over time.
+Some features like custom scratch buffer with specific minor-modes, copy on quit, etc, will be added over time.
 
 ** Installation
+You can install it from melpa, or put the files in your load path, and require it.
 
-To install it, put the files in your load path, and require it.
-Otherwise, if you use [[https://github.com/jwiegley/use-package][use-package]] you could use the following config
+If you use [[https://github.com/jwiegley/use-package][use-package]] you could use the following config
 #+begin_src emacs-lisp
   (use-package omni-scratch
-    :bind (("M-s DEL" . omni-scratch-new-scratch-buffer)
-           ("M-s <deletechar>" . omni-scratch-new-scratch-major-buffer)))
+      :bind (("M-s DEL" . omni-scratch-buffer)
+             ("M-s <deletechar>" . omni-scratch-major-buffer)
+             ("M-s $" . omni-scratch-goto-latest)))
 #+end_src
-
-Wait it to mature a bit and maybe you might get =some el-get= recipe, before it hits elpa, melpa, quelpa or else.
 
 ** Usage
 
-Fonctionalities are limited for now:
-- you can create a scratch buffer with the current mode you are using =omni-scratch-new-scratch-major-buffer=
-- you can create a new scratch buffer with =omni-scratch-new-scratch-buffer=. (Default to =fundamental-mode=)
+Fonctionalities are limited for now to this:
+- you can create a scratch buffer with the current mode you are using =omni-scratch-major-buffer=
+- you can create a new scratch buffer with =omni-scratch-buffer=. (Default to =fundamental-mode=)
+- you can go to the latest edited scratch with =omni-scratch-goto-latest=
+- you can quit a scratch buffer with =omni-scratch-quit= which will save its content to the kill ring
 
 ** Notes
 
