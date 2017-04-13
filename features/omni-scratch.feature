@@ -8,10 +8,19 @@ Feature: Quickly edit some program
     Then I should be in buffer "*scratch:draft*"
     And major mode should be fundamental-mode
 
-# todo: rego to same buffer!
 
   Scenario: Have just a emacs-lisp scratch
     Given current major mode is emacs-lisp-mode
     When I call "omni-scratch-new-scratch-major-buffer"
+    Then I should be in buffer "*scratch:emacs-lisp*"
+    And major mode should be emacs-lisp-mode
+
+
+ Scenario: I can go back to the emacs-lisp scratch
+    Given current major mode is emacs-lisp-mode
+    When I call "omni-scratch-new-scratch-major-buffer"
+    And I switch to buffer "my-mode.el"
+    And I turn on emacs-lisp-mode
+    And  I call "omni-scratch-new-scratch-major-buffer"
     Then I should be in buffer "*scratch:emacs-lisp*"
     And major mode should be emacs-lisp-mode
