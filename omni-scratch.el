@@ -83,5 +83,12 @@
 ;; §later: scratch minor modefor this buffer: quick exist, copy content. save to file.
 ;; §later: filter mode where not applyable: ibuffer and others..
 
+(defun omni-scratch-quit ()
+  "Quit the current omni-buffer"
+  ;; §Todo: protection to not being call in a non omni-scratch buffer
+  (interactive)
+  (kill-ring-save (buffer-end -1) (buffer-end 1))
+  (kill-buffer))
+
 (provide 'omni-scratch)
 ;;; omni-scratch.el ends here

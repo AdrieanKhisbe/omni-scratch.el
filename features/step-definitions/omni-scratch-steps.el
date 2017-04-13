@@ -7,6 +7,10 @@
   (lambda (mode)
     (call-interactively (intern mode))))
 
-(And "^major mode should be \\(.+\\)$"
+(Then "^major mode should be \\(.+\\)$"
   (lambda (mode)
     (equal major-mode (intern mode))))
+
+(Then "^kill ring should contain \"\\([^\"]+\\)\"$"
+      (lambda (text)
+        (equal text (current-kill 0))))

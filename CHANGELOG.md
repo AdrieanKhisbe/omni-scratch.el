@@ -4,7 +4,8 @@ All notable changes to *omni-scratch.el* will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
-
+### Added
+- Add a omni-scratch-quit function
 ## [0.1.1] - 2015-05-21
 ### Changed
 - Add package prefix to functions
