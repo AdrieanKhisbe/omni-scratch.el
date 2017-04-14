@@ -1,4 +1,4 @@
-* Omni-scratch.el
+#+TITLE: Omni-scratch.el
 
 /Scratch buffers one command away/
 
@@ -11,12 +11,12 @@
 [[https://github.com/AdrieanKhisbe/omni-scratch.el/tags][file:https://img.shields.io/github/tag/AdrieanKhisbe/omni-scratch.el.svg]]
 [[http://www.gnu.org/licenses/gpl-3.0.html][http://img.shields.io/:license-gpl3-blue.svg]]
 
-** Description
+* Description
 
 The goal of this basic mode is to easily create scratch buffer to edit in the curreny major mode you are using.
 Some features like custom scratch buffer with specific minor-modes, copy on quit, etc, will be added over time.
 
-** Installation
+* Installation
 You can install it from melpa, or put the files in your load path, and require it.
 
 If you use [[https://github.com/jwiegley/use-package][use-package]] you could use the following config
@@ -27,7 +27,7 @@ If you use [[https://github.com/jwiegley/use-package][use-package]] you could us
              ("M-s $" . omni-scratch-goto-latest)))
 #+end_src
 
-** Usage
+* Usage
 
 Fonctionalities are limited for now to this:
 - you can create a scratch buffer with the current mode you are using =omni-scratch-major-buffer=
@@ -35,7 +35,7 @@ Fonctionalities are limited for now to this:
 - you can go to the latest edited scratch with =omni-scratch-goto-latest=
 - you can quit a scratch buffer with =omni-scratch-quit= which will save its content to the kill ring
 
-** Notes
+* Notes
 
 This is still a *prototype*. So if ever you think about using it, prefer the =master= branch, and expect to update your config.
 Name of function and even behavior +might+ will change, so don't be suprised
