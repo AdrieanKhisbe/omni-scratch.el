@@ -47,6 +47,7 @@
   ;; §TODO: rename?, kill interactive?
   (let ((buffer (get-buffer-create name) ))
     (switch-to-buffer buffer)
+    (omni-scratch-mode)
     (setq omni-scratch-latest-scratch-buffer buffer)
     (funcall mode)
     ;; §later: apply eventual modification to local modes.
@@ -92,6 +93,12 @@
   (interactive)
   (kill-ring-save (buffer-end -1) (buffer-end 1))
   (kill-buffer))
+
+
+(define-minor-mode omni-scratch-mode
+  "Scratch buffer mode."
+  :lighter " β")
+
 
 (provide 'omni-scratch)
 ;;; omni-scratch.el ends here

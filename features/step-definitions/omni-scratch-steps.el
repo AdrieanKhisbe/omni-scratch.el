@@ -19,3 +19,7 @@
 (Then "^kill ring should contain \"\\([^\"]+\\)\"$"
       (lambda (text)
         (equal text (current-kill 0))))
+
+(Then "^omni-scratch should be a minor mode$"
+     (lambda ()
+       (bound-and-true-p omni-scratch-mode)))
