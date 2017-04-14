@@ -2,6 +2,11 @@
 ;; files in this directory whose names end with "-steps.el" will be
 ;; loaded automatically by Ecukes.
 
+(Before
+ (rename-buffer "current-buffer"))
+
+(After
+ (kill-buffer "current-buffer"))
 
 (Given "^current major mode is \\(.+\\)$"
   (lambda (mode)

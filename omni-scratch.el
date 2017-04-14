@@ -37,6 +37,9 @@
 (defvar omni-scratch-latest-scratch-buffer (get-buffer "*scratch*")
   "The Latest scratch buffer used.")
 
+(defvar omni-scratch-origin-buffer nil
+  "The last normal buffer from which command was invoked")
+
 (defun omni-scratch-create-scratch-buffer (name mode)
   "Create or switch to NAME buffer in specified MODE."
   ;; §later: option noselect?
