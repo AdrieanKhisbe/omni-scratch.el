@@ -44,6 +44,9 @@
 (defvar omni-scratch-origin-buffer nil
   "The last normal buffer from which command was invoked")
 
+(defvar omni-scratch-buffers-list '()
+  "List of scratch buffers.")
+
 (defun omni-scratch-create-scratch-buffer (name mode)
   "Create or switch to NAME buffer in specified MODE."
   ;; §later: option noselect?
@@ -90,21 +93,37 @@
       (progn (switch-to-buffer omni-scratch-origin-buffer)
              (setq omni-scratch-origin-buffer nil))
     (progn (setq omni-scratch-origin-buffer (current-buffer))
-           (switch-to-buffer
-            (omni-scratch-create-scratch-buffer
-             (replace-regexp-in-string "\\(.*\\)-mode" "*scratch:\\1*"
-                                       (symbol-name major-mode)) major-mode)))))
+           (let ((buffer-name
+                  (replace-regexp-in-string "\\(.*\\)-mode" "*scratch:\\1*"
+                                            (symbol-name major-mode))))
+             (add-to-list 'omni-scratch-buffers-list buffer-name)
+             (switch-to-buffer
+              (omni-scratch-create-scratch-buffer
+               buffer-name major-mode))))))
 
 ;; §later: scratch minor modefor this buffer: quick exist, copy content. save to file.
 ;; §later: filter mode where not applyable: ibuffer and others..
 
 (defun omni-scratch-quit ()
-  "Quit the current omni-buffer"
+  "Quit the current omni-buffer."
   ;; §Todo: protection to not being call in a non omni-scratch buffer
   (interactive)
   (kill-ring-save (buffer-end -1) (buffer-end 1))
+  (setq omni-scratch-buffers-list
+        (remove (buffer-name) omni-scratch-buffers-list))
   (kill-buffer))
 
+(defun omni-scratch-buffers ()
+  "Helm select the scratch buffer."
+  (interactive)
+  (let ((buffer-name
+         (helm :sources (list
+                         (helm-build-sync-source "default"
+                           :candidates '("*scratch:draft*" "*scratch*"))
+                         (helm-build-sync-source "major mode"
+                           :candidates omni-scratch-buffers-list))
+               :buffer "*omni-scratch-buffers*")))
+    (switch-to-buffer (get-buffer buffer-name))))
 
 (define-minor-mode omni-scratch-mode
   "Scratch buffer mode."
