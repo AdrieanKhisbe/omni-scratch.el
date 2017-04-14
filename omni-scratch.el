@@ -60,10 +60,7 @@
   (setq omni-scratch-origin-buffer (current-buffer))
   ;; §note: improve using ring. (so that handle dead buffer)
   (switch-to-buffer omni-scratch-latest-scratch-buffer))
-
-;; (defun omni-scratch-test ()
-;;   (interactive)
-;;   (omni-scratch-create-scratch-buffer "*scratch:draft*" 'fundamental-mode))
+(defalias 'omni-scratch-goto-last 'omni-scratch-goto-latest)
 
 ;; §todo: default mode
 ;; §maybe: specific background
