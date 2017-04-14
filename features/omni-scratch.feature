@@ -25,16 +25,23 @@ Feature: Quickly edit some program
     Then I should be in buffer "*scratch:emacs-lisp*"
     And major mode should be emacs-lisp-mode
 
-  # Scenario: I can go back to my origin buffer
-  #   Given current major mode is emacs-lisp-mode
-  #   When I call "omni-scratch-major-buffer"
-  #   Then I should be in buffer "*scratch:emacs-lisp*"
-  #   When I call "omni-scratch-major-buffer"
-  #   Then I should be in buffer "current-buffer"
+  Scenario: I can go back to my origin buffer
+    When I call "omni-scratch-buffer"
+    Then I should be in buffer "*scratch:draft*"
+    When I call "omni-scratch-buffer"
+    Then I should be in buffer "current-buffer"
 
-  Scenario: I can go to latest
+  Scenario: I can go back to my origin buffer in major
     Given current major mode is emacs-lisp-mode
     When I call "omni-scratch-major-buffer"
+    Then I should be in buffer "*scratch:emacs-lisp*"
+    When I call "omni-scratch-major-buffer"
+    Then I should be in buffer "current-buffer"
+
+ Scenario: I can go to latest
+    Given current major mode is emacs-lisp-mode
+    When I call "omni-scratch-major-buffer"
+    And I switch to buffer "my-mode.el"
     And I call "omni-scratch-buffer"
     And I switch to buffer "my-mode.el"
     And I call "omni-scratch-goto-latest"

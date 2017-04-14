@@ -3,10 +3,11 @@
 ;; loaded automatically by Ecukes.
 
 (Before
- (rename-buffer "current-buffer"))
+ (switch-to-buffer "current-buffer"))
 
 (After
- (kill-buffer "current-buffer"))
+ (kill-buffer "current-buffer")
+ (setq omni-scratch-origin-buffer nil))
 
 (Given "^current major mode is \\(.+\\)$"
   (lambda (mode)

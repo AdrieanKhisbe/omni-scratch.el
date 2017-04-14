@@ -47,9 +47,9 @@
   ;; §TODO: rename?, kill interactive?
   (let ((buffer (get-buffer-create name) ))
     (switch-to-buffer buffer)
-    (omni-scratch-mode)
     (setq omni-scratch-latest-scratch-buffer buffer)
     (funcall mode)
+    (omni-scratch-mode)
     ;; §later: apply eventual modification to local modes.
     ;; [and var: maybe identify the scratch buffer]: local var and register in alist or so
     buffer))
@@ -64,25 +64,34 @@
 ;;   (interactive)
 ;;   (omni-scratch-create-scratch-buffer "*scratch:draft*" 'fundamental-mode))
 
-;; §todo: default mode and minor
+;; §todo: default mode
 ;; §maybe: specific background
 
 ;;;###autoload
 (defun omni-scratch-buffer ()
-  "Create a new scratch buffer and switch to."
+  "Create a new scratch buffer and switch to. Unless if in scratch buffer already"
   (interactive)
-  (switch-to-buffer
-   (omni-scratch-create-scratch-buffer "*scratch:draft*" 'fundamental-mode)))
+  (if (bound-and-true-p omni-scratch-mode)
+      (progn (switch-to-buffer omni-scratch-origin-buffer)
+             (setq omni-scratch-origin-buffer nil))
+      (progn (setq omni-scratch-origin-buffer (current-buffer))
+        (switch-to-buffer
+         (omni-scratch-create-scratch-buffer "*scratch:draft*" 'fundamental-mode)))))
+
 ;; ¤note: for now just one scratch buffer.
 ;; §todo: later many different?
 ;;;###autoload
 (defun omni-scratch-major-buffer ()
   "Create a new scratch buffer and switch to with current major mode."
   (interactive)
-  (switch-to-buffer
-   (omni-scratch-create-scratch-buffer
-    (replace-regexp-in-string "\\(.*\\)-mode" "*scratch:\\1*"
-                              (symbol-name major-mode)) major-mode)))
+  (if (bound-and-true-p omni-scratch-mode)
+      (progn (switch-to-buffer omni-scratch-origin-buffer)
+             (setq omni-scratch-origin-buffer nil))
+    (progn (setq omni-scratch-origin-buffer (current-buffer))
+           (switch-to-buffer
+            (omni-scratch-create-scratch-buffer
+             (replace-regexp-in-string "\\(.*\\)-mode" "*scratch:\\1*"
+                                       (symbol-name major-mode)) major-mode)))))
 
 ;; §later: scratch minor modefor this buffer: quick exist, copy content. save to file.
 ;; §later: filter mode where not applyable: ibuffer and others..
