@@ -4,6 +4,10 @@ All notable changes to *omni-scratch.el* will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
+## [0.4.0] - 2017-04-14
+### Added
+- helm list with `omni-scratch-buffers`
+- ability to define the default scratch mode
 ## [0.3.0] - 2017-04-14
 ### Added
 - Add a minimalist minor mode to buffers

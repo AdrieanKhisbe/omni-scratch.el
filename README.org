@@ -2,7 +2,7 @@
 
 /Scratch buffers one command away/
 
-/Still Instable, Api to be probably changed/
+/Still Instable, existing Api might change/
 
 [[https://travis-ci.org/AdrieanKhisbe/omni-scratch.el][file:https://travis-ci.org/AdrieanKhisbe/omni-scratch.el.svg]]
 [[https://coveralls.io/r/AdrieanKhisbe/omni-scratch.el][file:https://coveralls.io/repos/AdrieanKhisbe/omni-scratch.el/badge.svg]]
@@ -24,7 +24,8 @@ If you use [[https://github.com/jwiegley/use-package][use-package]] you could us
   (use-package omni-scratch
       :bind (("M-s DEL" . omni-scratch-buffer)
              ("M-s <deletechar>" . omni-scratch-major-buffer)
-             ("M-s $" . omni-scratch-goto-latest)))
+             ("M-s $" . omni-scratch-goto-latest)
+             ("M-s *" . omni-scratch-buffers)))
 #+end_src
 
 * Usage
@@ -32,9 +33,12 @@ If you use [[https://github.com/jwiegley/use-package][use-package]] you could us
 Fonctionalities are limited for now to this:
 - you can create a scratch buffer with the current mode you are using =omni-scratch-major-buffer=.
   Calling it a second time from the scratch buffer will bring you back to the buffer you came from
-- you can create a new scratch buffer with =omni-scratch-buffer=. (Default to =fundamental-mode=)
+- you can create a new scratch buffer with =omni-scratch-buffer=.
+  (Default to =fundamental-mode=, configurable with =omni-scratch-default-mode=)
 - you can go to the latest edited scratch with =omni-scratch-goto-latest=
 - you can quit a scratch buffer with =omni-scratch-quit= which will save its content to the kill ring
+- you can select a buffer from a list if helm is installed with =omni-scratch-buffers=
+
 
 * About
 
