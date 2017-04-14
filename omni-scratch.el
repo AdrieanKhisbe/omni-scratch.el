@@ -34,6 +34,10 @@
 
 ;;; Code:
 
+(defcustom omni-scratch-default-mode 'fundamental-mode
+  "Default omni-scratch mode for the scratch buffer."
+  :type 'symbol :group 'omni-scratch)
+
 (defvar omni-scratch-latest-scratch-buffer (get-buffer "*scratch*")
   "The Latest scratch buffer used.")
 
@@ -74,7 +78,7 @@
              (setq omni-scratch-origin-buffer nil))
       (progn (setq omni-scratch-origin-buffer (current-buffer))
         (switch-to-buffer
-         (omni-scratch-create-scratch-buffer "*scratch:draft*" 'fundamental-mode)))))
+         (omni-scratch-create-scratch-buffer "*scratch:draft*" omni-scratch-default-mode)))))
 
 ;; ¤note: for now just one scratch buffer.
 ;; §todo: later many different?
