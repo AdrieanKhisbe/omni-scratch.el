@@ -30,14 +30,16 @@ If you use [[https://github.com/jwiegley/use-package][use-package]] you could us
 * Usage
 
 Fonctionalities are limited for now to this:
-- you can create a scratch buffer with the current mode you are using =omni-scratch-major-buffer=
+- you can create a scratch buffer with the current mode you are using =omni-scratch-major-buffer=.
+  Calling it a second time from the scratch buffer will bring you back to the buffer you came from
 - you can create a new scratch buffer with =omni-scratch-buffer=. (Default to =fundamental-mode=)
 - you can go to the latest edited scratch with =omni-scratch-goto-latest=
 - you can quit a scratch buffer with =omni-scratch-quit= which will save its content to the kill ring
 
-* Notes
+* About
 
-This is still a *prototype*. So if ever you think about using it, prefer the =master= branch, and expect to update your config.
-Name of function and even behavior +might+ will change, so don't be suprised
+This is still a *prototype*. So if ever you think about using it, prefer the =master= branch or elpa stable, and expect to update your config from times to times until stabilization.
+
+Name of function and even behavior might change, so don't be suprised. This will be reported in the [[./CHANGELOG.md][Changelog]].
 
 *If you have any remark, refactor suggestion or else, just pose an issue ;)*
