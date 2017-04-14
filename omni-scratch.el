@@ -57,6 +57,7 @@
 (defun omni-scratch-goto-latest ()
   "Switch to the `omni-scratch-latest-scratch-buffer' used."
   (interactive)
+  (setq omni-scratch-origin-buffer (current-buffer))
   ;; §note: improve using ring. (so that handle dead buffer)
   (switch-to-buffer omni-scratch-latest-scratch-buffer))
 
