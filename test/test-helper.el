@@ -37,6 +37,7 @@
             (:send-report nil)
             (:report-file "/tmp/undercover-report.json"))
 (require 'ert)
+(require 'el-mock)
 (require 'omni-scratch)
 
 ;;; test-helper.el ends here
