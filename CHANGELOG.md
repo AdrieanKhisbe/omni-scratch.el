@@ -4,6 +4,9 @@ All notable changes to *omni-scratch.el* will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
+## [0.4.1] - 2017-04-16
+### Fixed
+- version in omni-scratch.el
 ## [0.4.0] - 2017-04-14
 ### Added
 - helm list with `omni-scratch-buffers`
@@ -26,7 +29,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [0.1.0] - 2014-12-06
 - Initial Release
 
-[unreleased]: https://github.com/AdrieanKhisbe/omni-scratch.el/compare/v0.2.0...HEAD
+[unreleased]: https://github.com/AdrieanKhisbe/omni-scratch.el/compare/v0.4.1...HEAD
+[0.4.1]: https://github.com/AdrieanKhisbe/omni-scratch.el/compare/v0.4.0....v0.4.1
+[0.4.0]: https://github.com/AdrieanKhisbe/omni-scratch.el/compare/v0.3.0....v0.4.0
+[0.3.0]: https://github.com/AdrieanKhisbe/omni-scratch.el/compare/v0.2.0....v0.3.0
 [0.2.0]: https://github.com/AdrieanKhisbe/omni-scratch.el/compare/v0.1.1....v0.2.0
 [0.1.1]: https://github.com/AdrieanKhisbe/omni-scratch.el/compare/v0.1.0....v0.1.1
 [0.1.0]: https://github.com/AdrieanKhisbe/omni-scratch.el/compare/22b1c55....v0.1.0
