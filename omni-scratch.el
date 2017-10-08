@@ -75,21 +75,26 @@
       (list (prefix-numeric-value t) (region-beginning) (region-end))
     (list (prefix-numeric-value t))))
 
-;;;###autoload
-(defun omni-scratch-buffer (universal-arg &optional point mark)
+(defun omni-scratch--buffer-switch (buffer-name mode universal-arg &optional point mark)
   "Create a new scratch buffer and switch to. Unless if in scratch buffer already"
-  (interactive (omni-scratch--interactive-arguments))
   (if (bound-and-true-p omni-scratch-mode)
       (progn (switch-to-buffer omni-scratch-origin-buffer)
              (setq omni-scratch-origin-buffer nil))
     (let ((current-buffer (current-buffer))
           (buffer (omni-scratch-create-scratch-buffer
-                   "*scratch:draft*" omni-scratch-default-mode
+                  buffer-name mode
                    (if point (buffer-substring point mark) ""))))
       (setq omni-scratch-origin-buffer current-buffer)
       (if (equal universal-arg '(4))
                          (switch-to-buffer-other-window buffer)
         (switch-to-buffer buffer)))))
+
+;;;###autoload
+(defun omni-scratch-buffer (universal-arg &optional point mark)
+  "Create a new scratch buffer and switch to. Unless if in scratch buffer already"
+  (interactive (omni-scratch--interactive-arguments))
+  (omni-scratch--buffer-switch "*scratch:draft*" omni-scratch-default-mode
+                               universal-arg point mark))
 
 ;; ¤note: for now just one scratch buffer.
 ;; §todo: later many different?
@@ -97,21 +102,9 @@
 (defun omni-scratch-major-buffer (universal-arg &optional point mark)
   "Create a new scratch buffer and switch to with current major mode."
   (interactive (omni-scratch--interactive-arguments))
-  (if (bound-and-true-p omni-scratch-mode)
-      (progn (switch-to-buffer omni-scratch-origin-buffer)
-             (setq omni-scratch-origin-buffer nil))
-    (let* ((current-buffer (current-buffer))
-           (buffer-name
-            (replace-regexp-in-string "\\(.*\\)-mode" "*scratch:\\1*"
-                                      (symbol-name major-mode)))
-           (buffer (omni-scratch-create-scratch-buffer
-                    buffer-name major-mode
-                    (if point (buffer-substring point mark) ""))))
-      (setq omni-scratch-origin-buffer current-buffer)
-      (add-to-list 'omni-scratch-buffers-list buffer-name)
-      (if (equal universal-arg '(4))
-            (switch-to-buffer-other-window buffer)
-          (switch-to-buffer buffer)))))
+  (omni-scratch--buffer-switch
+   (replace-regexp-in-string "\\(.*\\)-mode" "*scratch:\\1*" (symbol-name major-mode))
+   major-mode universal-arg point mark))
 
 ;; §later: scratch minor modefor this buffer: quick exist, copy content. save to file.
 ;; §later: filter mode where not applyable: ibuffer and others..
@@ -120,20 +113,8 @@
 (defun omni-scratch-file-buffer (universal-arg &optional point mark)
   "Create a new scratch buffer associated with current file."
   (interactive (omni-scratch--interactive-arguments))
-  (if (bound-and-true-p omni-scratch-mode)
-      (progn (switch-to-buffer omni-scratch-origin-buffer)
-             (setq omni-scratch-origin-buffer nil))
-    (let* ((current-buffer (current-buffer))
-           (buffer-name
-            (format "*scratch:%s*" (buffer-name)))
-           (buffer (omni-scratch-create-scratch-buffer
-                    buffer-name major-mode
-                    (buffer-substring point mark))))
-      (setq omni-scratch-origin-buffer current-buffer)
-      (add-to-list 'omni-scratch-buffers-list buffer-name)
-      (if (equal universal-arg '(4))
-            (switch-to-buffer-other-window buffer)
-          (switch-to-buffer buffer)))))
+  (omni-scratch--buffer-switch (format "*scratch:%s*" (buffer-name))
+                               major-mode universal-arg point mark))
 
 (defun omni-scratch-quit ()
   "Quit the current omni-buffer."
