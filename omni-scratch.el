@@ -90,7 +90,7 @@
         (switch-to-buffer buffer)))))
 
 ;;;###autoload
-(defun omni-scratch-buffer (universal-arg &optional point mark)
+(defun omni-scratch (universal-arg &optional point mark)
   "Create a new scratch buffer and switch to. Unless if in scratch buffer already"
   (interactive (omni-scratch--interactive-arguments))
   (omni-scratch--buffer-switch "*scratch:draft*" omni-scratch-default-mode
@@ -99,7 +99,7 @@
 ;; ¤note: for now just one scratch buffer.
 ;; §todo: later many different?
 ;;;###autoload
-(defun omni-scratch-major-buffer (universal-arg &optional point mark)
+(defun omni-scratch-major (universal-arg &optional point mark)
   "Create a new scratch buffer and switch to with current major mode."
   (interactive (omni-scratch--interactive-arguments))
   (omni-scratch--buffer-switch
@@ -110,8 +110,8 @@
 ;; §later: filter mode where not applyable: ibuffer and others..
 
 ;;;###autoload
-(defun omni-scratch-file-buffer (universal-arg &optional point mark)
-  "Create a new scratch buffer associated with current file."
+(defun omni-scratch-buffer (universal-arg &optional point mark)
+  "Create a new scratch buffer associated with current buffer."
   (interactive (omni-scratch--interactive-arguments))
   (omni-scratch--buffer-switch (format "*scratch:%s*" (buffer-name))
                                major-mode universal-arg point mark))

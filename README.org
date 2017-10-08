@@ -19,9 +19,10 @@ Some features like custom scratch buffer with specific minor-modes, copy on quit
 * Usage
 
 Fonctionalities are limited for now to this:
-- you can create a scratch buffer with the current mode you are using =omni-scratch-major-buffer=.
+- you can create a scratch buffer with the current mode you are using =omni-scratch-major=.
   Calling it a second time from the scratch buffer will bring you back to the buffer you came from
-- you can create a new scratch buffer with =omni-scratch-buffer=.
+- you can create a scratch buffer attached to your current buffer with =omni-scratch-buffer=
+- you can create a new scratch buffer with =omni-scratch=.
   (Default to =fundamental-mode=, configurable with =omni-scratch-default-mode=)
 - you can go to the latest edited scratch with =omni-scratch-goto-latest=
 - you can quit a scratch buffer with =omni-scratch-quit= which will save its content to the kill ring
@@ -33,8 +34,9 @@ You can install it from melpa, or put the files in your load path, and require i
 If you use [[https://github.com/jwiegley/use-package][use-package]] you could use the following config
 #+begin_src emacs-lisp
   (use-package omni-scratch
-      :bind (("M-s DEL" . omni-scratch-buffer)
-             ("M-s -" . omni-scratch-major-buffer)
+      :bind (("M-s DEL" . omni-scratch)
+             ("M-s -" . omni-scratch-major)
+             ("M-s _" . omni-scratch-buffer)
              ("M-s $" . omni-scratch-goto-latest)
              ("M-s *" . omni-scratch-buffers)))
 #+end_src
