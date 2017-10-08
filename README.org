@@ -2,7 +2,7 @@
 
 /Scratch buffers one command away/
 
-/Still Instable, existing Api might change/
+:warning: /Still Instable, existing Api might change/
 
 [[https://travis-ci.org/AdrieanKhisbe/omni-scratch.el][file:https://travis-ci.org/AdrieanKhisbe/omni-scratch.el.svg]]
 [[https://coveralls.io/r/AdrieanKhisbe/omni-scratch.el][file:https://coveralls.io/repos/AdrieanKhisbe/omni-scratch.el/badge.svg]]
@@ -16,18 +16,6 @@
 The goal of this basic mode is to easily create scratch buffer to edit in the curreny major mode you are using.
 Some features like custom scratch buffer with specific minor-modes, copy on quit, etc, will be added over time.
 
-* Installation
-You can install it from melpa, or put the files in your load path, and require it.
-
-If you use [[https://github.com/jwiegley/use-package][use-package]] you could use the following config
-#+begin_src emacs-lisp
-  (use-package omni-scratch
-      :bind (("M-s DEL" . omni-scratch-buffer)
-             ("M-s <deletechar>" . omni-scratch-major-buffer)
-             ("M-s $" . omni-scratch-goto-latest)
-             ("M-s *" . omni-scratch-buffers)))
-#+end_src
-
 * Usage
 
 Fonctionalities are limited for now to this:
@@ -38,6 +26,18 @@ Fonctionalities are limited for now to this:
 - you can go to the latest edited scratch with =omni-scratch-goto-latest=
 - you can quit a scratch buffer with =omni-scratch-quit= which will save its content to the kill ring
 - you can select a buffer from a list if helm is installed with =omni-scratch-buffers=
+
+* Installation
+You can install it from melpa, or put the files in your load path, and require it.
+
+If you use [[https://github.com/jwiegley/use-package][use-package]] you could use the following config
+#+begin_src emacs-lisp
+  (use-package omni-scratch
+      :bind (("M-s DEL" . omni-scratch-buffer)
+             ("M-s -" . omni-scratch-major-buffer)
+             ("M-s $" . omni-scratch-goto-latest)
+             ("M-s *" . omni-scratch-buffers)))
+#+end_src
 
 
 * About
