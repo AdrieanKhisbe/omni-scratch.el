@@ -24,3 +24,8 @@
 (Then "^omni-scratch should be a minor mode$"
      (lambda ()
        (bound-and-true-p omni-scratch-mode)))
+
+(When "^I call with universal arg \"\\(.+\\)\"$"
+   (lambda (func)
+     (let ((v (vconcat [?\C-u ?\M-x] (string-to-vector func))))
+       (execute-kbd-macro v))))

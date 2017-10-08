@@ -73,9 +73,5 @@ Feature: Quickly edit some program
 
   Scenario: I can go to scratch in other windows
     Given I am in buffer "my-program"
-    When I start an action chain
-    And I press "C-u"
-    And I press "M-x"
-    And I type "omni-scratch"
-    And I execute the action chain
+    And I call with universal arg "omni-scratch"
     Then I should be in buffer "*scratch:draft*"
