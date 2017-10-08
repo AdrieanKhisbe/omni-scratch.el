@@ -61,7 +61,7 @@ Feature: Quickly edit some program
     Then I should be in buffer "*scratch:my-program*"
 
   Scenario: I can go to scratch buffer dedicated to file with selected content
-    Given I am in buffer "my-program.el"
+    Given I am in buffer "my-program.py"
     When I type "Titi='Toto'"
     And  I turn on python-mode
     And  I select "Titi"
@@ -70,3 +70,12 @@ Feature: Quickly edit some program
     Then I should be in buffer "*scratch:my-program.py*"
     And  major mode should be python-mode
     And  I should see "Titi"
+
+  Scenario: I can go to scratch in other windows
+    Given I am in buffer "my-program"
+    When I start an action chain
+    And I press "C-u"
+    And I press "M-x"
+    And I type "omni-scratch-buffer"
+    And I execute the action chain
+    Then I should be in buffer "*scratch:draft*"
