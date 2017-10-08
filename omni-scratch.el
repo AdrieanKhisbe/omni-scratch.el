@@ -42,14 +42,17 @@
 (defvar omni-scratch-buffers-list '()
   "List of scratch buffers.")
 
-(defun omni-scratch-create-scratch-buffer (name mode)
-  "Create or switch to NAME buffer in specified MODE."
+(defun omni-scratch-create-scratch-buffer (name mode text)
+  "Create or switch to NAME buffer in specified MODE with TEXT as content."
   ;; §later: option noselect?
   ;; §maybe: create or also switch to?
   ;; §TODO: rename?, kill interactive?
-  (let ((buffer (get-buffer-create name) ))
+  (let ((buffer (get-buffer-create name)))
     (switch-to-buffer buffer)
     (setq omni-scratch-latest-scratch-buffer buffer)
+    (when (> (length text) 0)
+      (erase-buffer)
+      (insert text))
     (funcall mode)
     (omni-scratch-mode)
     ;; §later: apply eventual modification to local modes.
@@ -68,22 +71,24 @@
 ;; §maybe: specific background
 
 ;;;###autoload
-(defun omni-scratch-buffer ()
+(defun omni-scratch-buffer (point mark)
   "Create a new scratch buffer and switch to. Unless if in scratch buffer already"
-  (interactive)
+  (interactive "r")
   (if (bound-and-true-p omni-scratch-mode)
       (progn (switch-to-buffer omni-scratch-origin-buffer)
              (setq omni-scratch-origin-buffer nil))
       (progn (setq omni-scratch-origin-buffer (current-buffer))
         (switch-to-buffer
-         (omni-scratch-create-scratch-buffer "*scratch:draft*" omni-scratch-default-mode)))))
+         (omni-scratch-create-scratch-buffer
+          "*scratch:draft*" omni-scratch-default-mode
+          (buffer-substring point mark))))))
 
 ;; ¤note: for now just one scratch buffer.
 ;; §todo: later many different?
 ;;;###autoload
-(defun omni-scratch-major-buffer ()
+(defun omni-scratch-major-buffer (point mark)
   "Create a new scratch buffer and switch to with current major mode."
-  (interactive)
+  (interactive "r")
   (if (bound-and-true-p omni-scratch-mode)
       (progn (switch-to-buffer omni-scratch-origin-buffer)
              (setq omni-scratch-origin-buffer nil))
@@ -94,7 +99,8 @@
              (add-to-list 'omni-scratch-buffers-list buffer-name)
              (switch-to-buffer
               (omni-scratch-create-scratch-buffer
-               buffer-name major-mode))))))
+               buffer-name major-mode
+               (buffer-substring point mark)))))))
 
 ;; §later: scratch minor modefor this buffer: quick exist, copy content. save to file.
 ;; §later: filter mode where not applyable: ibuffer and others..
