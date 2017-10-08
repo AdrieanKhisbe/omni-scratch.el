@@ -105,6 +105,22 @@
 ;; §later: scratch minor modefor this buffer: quick exist, copy content. save to file.
 ;; §later: filter mode where not applyable: ibuffer and others..
 
+;;;###autoload
+(defun omni-scratch-file-buffer (point mark)
+  "Create a new scratch buffer associated with current file."
+  (interactive "r")
+  (if (bound-and-true-p omni-scratch-mode)
+      (progn (switch-to-buffer omni-scratch-origin-buffer)
+             (setq omni-scratch-origin-buffer nil))
+    (progn (setq omni-scratch-origin-buffer (current-buffer))
+           (let ((buffer-name
+                  (format "*scratch:%s*" (buffer-name))))
+             (add-to-list 'omni-scratch-buffers-list buffer-name)
+             (switch-to-buffer
+              (omni-scratch-create-scratch-buffer
+               buffer-name major-mode
+               (buffer-substring point mark)))))))
+
 (defun omni-scratch-quit ()
   "Quit the current omni-buffer."
   ;; §Todo: protection to not being call in a non omni-scratch buffer
