@@ -71,7 +71,7 @@
 ;; §maybe: specific background
 
 (defun omni-scratch--interactive-arguments ()
-  (if (use-region-p)
+  (if (mark) ; was active-region-p but not working wwith ecukes
       (list (prefix-numeric-value t) (region-beginning) (region-end))
     (list (prefix-numeric-value t))))
 

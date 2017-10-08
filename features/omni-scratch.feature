@@ -54,3 +54,19 @@ Feature: Quickly edit some program
     And I call "omni-scratch-quit"
     Then I should be in buffer "my-program"
     And kill ring should contain "Hello World"
+
+  Scenario: I can go to scratch buffer dedicated to file
+    Given I am in buffer "my-program"
+    When I call "omni-scratch-file-buffer"
+    Then I should be in buffer "*scratch:my-program*"
+
+  Scenario: I can go to scratch buffer dedicated to file with selected content
+    Given I am in buffer "my-program.el"
+    When I type "Titi='Toto'"
+    And  I turn on python-mode
+    And  I select "Titi"
+    Then the region should be "Titi"
+    When I call "omni-scratch-file-buffer"
+    Then I should be in buffer "*scratch:my-program.py*"
+    And  major mode should be python-mode
+    And  I should see "Titi"
