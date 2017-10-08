@@ -27,6 +27,7 @@ Fonctionalities are limited for now to this:
 - you can go to the latest edited scratch with =omni-scratch-goto-latest=
 - you can quit a scratch buffer with =omni-scratch-quit= which will save its content to the kill ring
 - you can select a buffer from a list if helm is installed with =omni-scratch-buffers=
+- calling a scratch function with <kbd>C-U</kbd>, the universal arg, open the scratch buffer in other window
 
 * Installation
 You can install it from melpa, or put the files in your load path, and require it.
