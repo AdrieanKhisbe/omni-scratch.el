@@ -75,3 +75,4 @@ Feature: Quickly edit some program
     Given I am in buffer "my-program"
     And I call with universal arg "omni-scratch"
     Then I should be in buffer "*scratch:draft*"
+    And I should have 2 windows

@@ -29,3 +29,7 @@
    (lambda (func)
      (let ((v (vconcat [?\C-u ?\M-x] (string-to-vector func))))
        (execute-kbd-macro v))))
+
+(Then "^I should have \\([0-9]+\\) windows$"
+     (lambda (nwindow)
+       (equal nwindow (length (get-buffer-window-list)))))
