@@ -28,10 +28,15 @@
 ;; copy on quit, etc, might be added over time.
 
 ;;; Code:
+(require 'color)
 
 (defcustom omni-scratch-default-mode 'fundamental-mode
   "Default omni-scratch mode for the scratch buffer."
   :type 'symbol :group 'omni-scratch)
+
+(defcustom omni-scratch-pale-background t
+  "If true, scratch buffer are more pale than standard buffer"
+  :type 'boolean :group 'omni-scratch)
 
 (defvar omni-scratch-latest-scratch-buffer (get-buffer "*scratch*")
   "The Latest scratch buffer used.")
@@ -54,6 +59,8 @@
         (erase-buffer)
         (insert text))
       (funcall mode)
+      (when omni-scratch-pale-background
+        (omni-scratch--set-pale-color))
       (omni-scratch-mode))
       ;; §later: apply eventual modification to local modes.
       ;; [and var: maybe identify the scratch buffer]: local var and register in alist or so
@@ -136,6 +143,30 @@
                            :candidates omni-scratch-buffers-list))
                :buffer "*omni-scratch-buffers*")))
     (switch-to-buffer (get-buffer buffer-name))))
+
+(defun omni-scratch--set-pale-color ()
+  (face-remap-add-relative
+   'default
+   `((:slant italic
+      :background ,(if (eq 'dark (frame-parameter nil 'background-mode))
+                       (omni-scratch--pale-light (face-attribute 'default :background) 10)
+                     (omni-scratch--pale-dark (face-attribute 'default :background) 10)
+                     ))))
+  )
+
+(defun omni-scratch--pale-dark (color percent)
+  "Give PERCENT darker and desature COLOR."
+  (when (and color (not (equal "unspecified-bg" color)))
+    (color-darken-name
+     (color-desaturate-name color percent)
+     percent)))
+
+(defun omni-scratch--pale-light (color percent)
+  "Give PERCENT lighter and desature COLOR."
+  (when (and color (not (equal "unspecified-bg" color)))
+    (color-lighten-name
+     (color-desaturate-name color percent)
+     percent)))
 
 (define-minor-mode omni-scratch-mode
   "Scratch buffer mode."
