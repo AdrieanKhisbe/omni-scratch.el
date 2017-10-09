@@ -157,11 +157,10 @@
   (face-remap-add-relative
    'default
    `((:slant italic
-      :background ,(if (eq 'dark (frame-parameter nil 'background-mode))
-                       (omni-scratch--pale-light (face-attribute 'default :background) omni-scratch-pale-percent)
-                     (omni-scratch--pale-dark (face-attribute 'default :background) omni-scratch-pale-percent)
-                     ))))
-  )
+             :background ,(pcase (frame-parameter nil 'background-mode)
+                            (`dark (omni-scratch--pale-light (face-attribute 'default :background) omni-scratch-pale-percent))
+                            (`light (omni-scratch--pale-dark (face-attribute 'default :background) omni-scratch-pale-percent))
+                            (_ nil))))))
 
 (defun omni-scratch--pale-dark (color percent)
   "Give PERCENT darker and desature COLOR."
