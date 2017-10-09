@@ -31,5 +31,11 @@
        (execute-kbd-macro v))))
 
 (Then "^I should have \\([0-9]+\\) windows$"
-     (lambda (nwindow)
-       (equal nwindow (length (get-buffer-window-list)))))
+      (lambda (nwindow)
+        (let ((windows (get-buffer-window-list)))
+          (eq nwindow (length windows)))))
+
+(Then "^I should have \"\\([^\"]+\\)\" buffer as window$"
+     (lambda (buffername)
+       (member (mapcar (lambda (bn) (equal bn buffername))
+                       (mapcar 'buffer-name (mapcar 'window-buffer (get-buffer-window-list)))) t)))
