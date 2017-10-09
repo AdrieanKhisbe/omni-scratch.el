@@ -34,15 +34,24 @@
   "Default omni-scratch mode for the scratch buffer."
   :type 'symbol :group 'omni-scratch)
 
+(defcustom omni-scratch-lighter " β"
+  "Lighter of omni-scratch-mode."
+  :type 'string :group 'omni-scratch)
+
 (defcustom omni-scratch-pale-background t
-  "If true, scratch buffer are more pale than standard buffer"
+  "If true, scratch buffer are more pale than standard buffer."
   :type 'boolean :group 'omni-scratch)
+
+(defcustom omni-scratch-pale-percent 10
+  "Percent more pale are scratch buffer."
+  :type 'integer :group 'omni-scratch)
+
 
 (defvar omni-scratch-latest-scratch-buffer (get-buffer "*scratch*")
   "The Latest scratch buffer used.")
 
 (defvar omni-scratch-origin-buffer nil
-  "The last normal buffer from which command was invoked")
+  "The last normal buffer from which command was invoked.")
 
 (defvar omni-scratch-buffers-list '()
   "List of scratch buffers.")
@@ -149,8 +158,8 @@
    'default
    `((:slant italic
       :background ,(if (eq 'dark (frame-parameter nil 'background-mode))
-                       (omni-scratch--pale-light (face-attribute 'default :background) 10)
-                     (omni-scratch--pale-dark (face-attribute 'default :background) 10)
+                       (omni-scratch--pale-light (face-attribute 'default :background) omni-scratch-pale-percent)
+                     (omni-scratch--pale-dark (face-attribute 'default :background) omni-scratch-pale-percent)
                      ))))
   )
 
@@ -170,7 +179,7 @@
 
 (define-minor-mode omni-scratch-mode
   "Scratch buffer mode."
-  :lighter " β"
+  :lighter omni-scratch-lighter
   :keymap
   (let ((map (make-sparse-keymap)))
     (define-key map (kbd "M-s $ w") 'write-file)
