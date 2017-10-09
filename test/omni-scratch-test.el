@@ -16,3 +16,15 @@
      (stub helm-build-sync-source => nil)
      (omni-scratch-buffers)
      (should (equal (buffer-name) "buffer-test"))))
+
+(ert-deftest omni-scratch-color-darken ()
+  (with-mock
+   (stub frame-parameter => 'dark)
+   (stub face-attribute =>  "#123456")
+   (omni-scratch--set-pale-color)))
+
+(ert-deftest omni-scratch-color-lighten ()
+  (with-mock
+   (stub frame-parameter => 'light)
+   (stub face-attribute =>  "#123456")
+   (omni-scratch--set-pale-color)))
