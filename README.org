@@ -50,11 +50,10 @@ If you use [[https://github.com/jwiegley/use-package][use-package]] you could us
 * Customization
 Here are the variable you can customize about *omni-scratch*:
 
-- `omni-scratch-default-mode` : the mode for the scratch buffer. By default
-`'fundamental-mode`
-- `omni-scratch-lighter`: the lighter indicating a /omni-scratch/ buffer. By default `β`.
-- `omni-scratch-pale-background`: If true (default), scratch buffer are more pale than other buffers
-- `omni-scratch-pale-percent`: how pale are the scratch buffers.
+- =omni-scratch-default-mode= : the mode for the scratch buffer. By default =fundamental-mode=
+- =omni-scratch-lighter=: the lighter indicating a /omni-scratch/ buffer. By default =β=.
+- =omni-scratch-pale-background=: If true (default), scratch buffer are more pale than other buffers
+- =omni-scratch-pale-percent=: how pale are the scratch buffers.
 
 * About
 
