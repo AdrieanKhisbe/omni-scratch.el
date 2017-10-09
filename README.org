@@ -29,6 +29,14 @@ Fonctionalities are limited for now to this:
 - you can select a buffer from a list if helm is installed with =omni-scratch-buffers=
 - calling a scratch function with <kbd>C-U</kbd>, the universal arg, open the scratch buffer in other window
 
+Inside a scratch buffer you have access to the following bindings:
+
+- <kbd>M-s $ e</kbd> : erase buffer
+- <kbd>M-s $ e</kbd> : write to file scratch
+- <kbd>M-s $ p</kbd> : paste content (using spacemacs paste transient mode if defined, otherwise simple =yank=)
+- <kbd>M-s $ b</kbd> : open a buffer list of the scratch buffers
+- <kbd>M-s $ q</kbd> : quit buffer, copying its content to kill ring
+
 * Installation
 You can install it from melpa, or put the files in your load path, and require it.
 
@@ -42,6 +50,14 @@ If you use [[https://github.com/jwiegley/use-package][use-package]] you could us
              ("M-s $ b" . omni-scratch-buffers)))
 #+end_src
 
+* Customization
+Here are the variable you can customize about *omni-scratch*:
+
+- `omni-scratch-default-mode` : the mode for the scratch buffer. By default
+`'fundamental-mode`
+- `omni-scratch-lighter`: the lighter indicating a /omni-scratch/ buffer. By default `β`.
+- `omni-scratch-pale-background`: If true (default), scratch buffer are more pale than other buffers
+- `omni-scratch-pale-percent`: how pale are the scratch buffers.
 
 * About
 
