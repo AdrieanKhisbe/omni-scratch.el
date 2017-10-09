@@ -3,10 +3,17 @@
 All notable changes to *omni-scratch.el* will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## [Unreleased][unreleased
+## [Unreleased][unreleased]
+
+## [0.6.0] - 2017-10-09
+### Added
+- Minor mode map
+- Background more pale (by opt out)
+### Fixed
+- Universal prefix arg handling
 ## [0.5.0] - 2017-10-08
 ### Changed
-- remove `-buffer` suffix in the function name: `omni-scratch` et `omni-scratch-major`
+- Remove `-buffer` suffix in the function name: `omni-scratch` et `omni-scratch-major`
 ### Added
 - `omni-scratch-buffer` to have a scraych buffer attached to current buffer
 - Calling with universal arg open the scratch buffer in other window
@@ -14,11 +21,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [0.4.1] - 2017-04-16
 ### Fixed
-- version in omni-scratch.el
+- Version in omni-scratch.el
 ## [0.4.0] - 2017-04-14
 ### Added
-- helm list with `omni-scratch-buffers`
-- ability to define the default scratch mode
+- Helm list with `omni-scratch-buffers`
+- Ability to define the default scratch mode
 ## [0.3.0] - 2017-04-14
 ### Added
 - Add a minimalist minor mode to buffers
@@ -37,7 +44,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [0.1.0] - 2014-12-06
 - Initial Release
 
-[unreleased]: https://github.com/AdrieanKhisbe/omni-scratch.el/compare/v0.5.0...HEAD
+[unreleased]: https://github.com/AdrieanKhisbe/omni-scratch.el/compare/v0.6.0...HEAD
+[0.6.0]: https://github.com/AdrieanKhisbe/omni-scratch.el/compare/v0.5.0...v0.6.0
 [0.5.0]: https://github.com/AdrieanKhisbe/omni-scratch.el/compare/v0.4.1...v0.5.0
 [0.4.1]: https://github.com/AdrieanKhisbe/omni-scratch.el/compare/v0.4.0....v0.4.1
 [0.4.0]: https://github.com/AdrieanKhisbe/omni-scratch.el/compare/v0.3.0....v0.4.0
