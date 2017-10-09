@@ -170,7 +170,17 @@
 
 (define-minor-mode omni-scratch-mode
   "Scratch buffer mode."
-  :lighter " β")
+  :lighter " β"
+  :keymap
+  (let ((map (make-sparse-keymap)))
+    (define-key map (kbd "M-s $ w") 'write-file)
+    (define-key map (kbd "M-s $ e") 'erase-buffer)
+    (define-key map (kbd "M-s $ b") 'omni-scratch-buffers)
+    (define-key map (kbd "M-s $ q") 'omni-scratch-quit)
+    (if (fboundp 'spacemacs/paste-transient-state/body)
+        (define-key map (kbd "M-s $ p") 'spacemacs/paste-transient-state/body)
+      (define-key map (kbd "M-s $ p") 'yank))
+    map))
 
 
 (provide 'omni-scratch)

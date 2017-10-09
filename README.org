@@ -35,11 +35,11 @@ You can install it from melpa, or put the files in your load path, and require i
 If you use [[https://github.com/jwiegley/use-package][use-package]] you could use the following config
 #+begin_src emacs-lisp
   (use-package omni-scratch
-      :bind (("M-s DEL" . omni-scratch)
-             ("M-s -" . omni-scratch-major)
-             ("M-s _" . omni-scratch-buffer)
-             ("M-s $" . omni-scratch-goto-latest)
-             ("M-s *" . omni-scratch-buffers)))
+      :bind (("M-s $ DEL" . omni-scratch)
+             ("M-s $ -" . omni-scratch-major)
+             ("M-s $ _" . omni-scratch-buffer)
+             ("M-s $ $" . omni-scratch-goto-latest)
+             ("M-s $ b" . omni-scratch-buffers)))
 #+end_src
 
 
