@@ -26,16 +26,18 @@
        (bound-and-true-p omni-scratch-mode)))
 
 (When "^I call with universal arg \"\\(.+\\)\"$"
-   (lambda (func)
-     (let ((v (vconcat [?\C-u ?\M-x] (string-to-vector func))))
-       (execute-kbd-macro v))))
+      (lambda (func)
+        (setq current-prefix-arg '(4))
+        (call-interactively (intern func))))
 
 (Then "^I should have \\([0-9]+\\) windows$"
       (lambda (nwindow)
-        (let ((windows (get-buffer-window-list)))
-          (eq nwindow (length windows)))))
+        (let ((windows (window-list)))
+          (cl-assert (eq (string-to-int nwindow) (length windows))
+                     t "Wrong number of windows %s vs %s"))))
 
 (Then "^I should have \"\\([^\"]+\\)\" buffer as window$"
      (lambda (buffername)
-       (member (mapcar (lambda (bn) (equal bn buffername))
-                       (mapcar 'buffer-name (mapcar 'window-buffer (get-buffer-window-list)))) t)))
+       (cl-assert (member t (mapcar (lambda (bn) (equal bn buffername))
+                                     (mapcar 'buffer-name (mapcar 'window-buffer (window-list)))))
+                  t "Windows not present %s")))

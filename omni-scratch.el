@@ -48,15 +48,15 @@
   ;; §maybe: create or also switch to?
   ;; §TODO: rename?, kill interactive?
   (let ((buffer (get-buffer-create name)))
-    (switch-to-buffer buffer)
-    (setq omni-scratch-latest-scratch-buffer buffer)
-    (when (> (length text) 0)
-      (erase-buffer)
-      (insert text))
-    (funcall mode)
-    (omni-scratch-mode)
-    ;; §later: apply eventual modification to local modes.
-    ;; [and var: maybe identify the scratch buffer]: local var and register in alist or so
+    (with-current-buffer buffer
+      (setq omni-scratch-latest-scratch-buffer buffer)
+      (when (> (length text) 0)
+        (erase-buffer)
+        (insert text))
+      (funcall mode)
+      (omni-scratch-mode))
+      ;; §later: apply eventual modification to local modes.
+      ;; [and var: maybe identify the scratch buffer]: local var and register in alist or so
     buffer))
 
 (defun omni-scratch-goto-latest ()
@@ -71,9 +71,9 @@
 ;; §maybe: specific background
 
 (defun omni-scratch--interactive-arguments ()
-  (if (mark) ; was active-region-p but not working wwith ecukes
-      (list (prefix-numeric-value t) (region-beginning) (region-end))
-    (list (prefix-numeric-value t))))
+  (if (mark)                  ; was active-region-p but not working wwith ecukes
+      (list current-prefix-arg (region-beginning) (region-end))
+    (list current-prefix-arg)))
 
 (defun omni-scratch--buffer-switch (buffer-name mode universal-arg &optional point mark)
   "Create a new scratch buffer and switch to. Unless if in scratch buffer already"
@@ -82,11 +82,11 @@
              (setq omni-scratch-origin-buffer nil))
     (let ((current-buffer (current-buffer))
           (buffer (omni-scratch-create-scratch-buffer
-                  buffer-name mode
+                   buffer-name mode
                    (if point (buffer-substring point mark) ""))))
       (setq omni-scratch-origin-buffer current-buffer)
       (if (equal universal-arg '(4))
-                         (switch-to-buffer-other-window buffer)
+          (switch-to-buffer-other-window buffer)
         (switch-to-buffer buffer)))))
 
 ;;;###autoload
