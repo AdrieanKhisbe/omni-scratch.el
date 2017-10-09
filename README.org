@@ -24,15 +24,15 @@ Fonctionalities are limited for now to this:
 - you can go to the latest edited scratch with =omni-scratch-goto-latest=
 - you can quit a scratch buffer with =omni-scratch-quit= which will save its content to the kill ring
 - you can select a buffer from a list if helm is installed with =omni-scratch-buffers=
-- calling a scratch function with <kbd>C-U</kbd>, the universal arg, open the scratch buffer in other window
+- calling a scratch function with =C-u=, the universal arg, open the scratch buffer in other window
 
 Inside a scratch buffer you have access to the following bindings:
 
-- <kbd>M-s $ e</kbd> : erase buffer
-- <kbd>M-s $ e</kbd> : write to file scratch
-- <kbd>M-s $ p</kbd> : paste content (using spacemacs paste transient mode if defined, otherwise simple =yank=)
-- <kbd>M-s $ b</kbd> : open a buffer list of the scratch buffers
-- <kbd>M-s $ q</kbd> : quit buffer, copying its content to kill ring
+- =M-s $ e= : erase buffer
+- =M-s $ e= : write to file scratch
+- =M-s $ p= : paste content (using spacemacs paste transient mode if defined, otherwise simple =yank=)
+- =M-s $ b= : open a buffer list of the scratch buffers
+- =M-s $ q= : quit buffer, copying its content to kill ring
 
 * Installation
 You can install it from melpa, or put the files in your load path, and require it.
